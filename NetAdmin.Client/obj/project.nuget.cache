@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "fBpk22WR4vk=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\HP\\Desktop\\NetAdminPro\\NetAdmin.Client\\NetAdmin.Client.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\HP\\.nuget\\packages\\system.codedom\\10.0.2\\system.codedom.10.0.2.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\system.configuration.configurationmanager\\10.0.2\\system.configuration.configurationmanager.10.0.2.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\system.diagnostics.eventlog\\10.0.2\\system.diagnostics.eventlog.10.0.2.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\system.diagnostics.performancecounter\\10.0.2\\system.diagnostics.performancecounter.10.0.2.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\system.management\\10.0.2\\system.management.10.0.2.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\system.security.cryptography.protecteddata\\10.0.2\\system.security.cryptography.protecteddata.10.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,15 @@
+[2026-02-03 16:03:34] Startup fatal error
+System.Windows.Markup.XamlParseException: 'La valeur fournie sur 'System.Windows.StaticResourceExtension' a levé une exception.' numéro de ligne '16' et position de ligne '25'.
+ ---> System.Exception: Impossible de trouver la ressource nommée'MaterialDesignFlatMidPrimaryRippleButton'. Les noms de ressources respectent la casse.
+   at System.Windows.StaticResourceExtension.ProvideValueInternal(IServiceProvider serviceProvider, Boolean allowDeferredReference)
+   at MS.Internal.Xaml.Runtime.ClrObjectRuntime.CallProvideValue(MarkupExtension me, IServiceProvider serviceProvider)
+   --- End of inner exception stack trace ---
+   at System.Windows.Markup.XamlReader.RewrapException(Exception e, IXamlLineInfo lineInfo, Uri baseUri)
+   at System.Windows.Markup.WpfXamlLoader.Load(XamlReader xamlReader, IXamlObjectWriterFactory writerFactory, Boolean skipJournaledProperties, Object rootObject, XamlObjectWriterSettings settings, Uri baseUri)
+   at System.Windows.Markup.WpfXamlLoader.LoadBaml(XamlReader xamlReader, Boolean skipJournaledProperties, Object rootObject, XamlAccessLevel accessLevel, Uri baseUri)
+   at System.Windows.Markup.XamlReader.LoadBaml(Stream stream, ParserContext parserContext, Object parent, Boolean closeStream)
+   at System.Windows.Application.LoadComponent(Object component, Uri resourceLocator)
+   at NetAdmin.Server.MainWindow.InitializeComponent() in C:\Users\HP\Desktop\NetAdminPro\NetAdmin.Server\MainWindow.xaml:line 1
+   at NetAdmin.Server.MainWindow..ctor() in C:\Users\HP\Desktop\NetAdminPro\NetAdmin.Server\MainWindow.xaml.cs:line 23
+   at NetAdmin.Server.App.OnStartup(StartupEventArgs e) in C:\Users\HP\Desktop\NetAdminPro\NetAdmin.Server\App.xaml.cs:line 22
+

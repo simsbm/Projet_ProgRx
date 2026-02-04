@@ -1,0 +1,11 @@
+C:\Users\HP\Desktop\NetAdminPro\NetAdmin.Shared\bin\Debug\net10.0\NetAdmin.Shared.deps.json
+C:\Users\HP\Desktop\NetAdminPro\NetAdmin.Shared\bin\Debug\net10.0\NetAdmin.Shared.dll
+C:\Users\HP\Desktop\NetAdminPro\NetAdmin.Shared\bin\Debug\net10.0\NetAdmin.Shared.pdb
+C:\Users\HP\Desktop\NetAdminPro\NetAdmin.Shared\obj\Debug\net10.0\NetAdmin.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Desktop\NetAdminPro\NetAdmin.Shared\obj\Debug\net10.0\NetAdmin.Shared.AssemblyInfoInputs.cache
+C:\Users\HP\Desktop\NetAdminPro\NetAdmin.Shared\obj\Debug\net10.0\NetAdmin.Shared.AssemblyInfo.cs
+C:\Users\HP\Desktop\NetAdminPro\NetAdmin.Shared\obj\Debug\net10.0\NetAdmin.Shared.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\NetAdminPro\NetAdmin.Shared\obj\Debug\net10.0\NetAdmin.Shared.dll
+C:\Users\HP\Desktop\NetAdminPro\NetAdmin.Shared\obj\Debug\net10.0\refint\NetAdmin.Shared.dll
+C:\Users\HP\Desktop\NetAdminPro\NetAdmin.Shared\obj\Debug\net10.0\NetAdmin.Shared.pdb
+C:\Users\HP\Desktop\NetAdminPro\NetAdmin.Shared\obj\Debug\net10.0\ref\NetAdmin.Shared.dll

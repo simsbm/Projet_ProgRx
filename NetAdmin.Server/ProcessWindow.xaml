@@ -1,0 +1,79 @@
+﻿<Window x:Class="NetAdmin.Server.ProcessWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestionnaire de Processus Distant" Height="640" Width="720"
+        WindowStartupLocation="CenterOwner"
+        Background="#F5F5F5" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="200"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#673AB7" Padding="12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Processus distants" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                    <TextBlock x:Name="TxtTargetMachine" Text="Machine: ..." Foreground="#E6FFFFFF" FontSize="12"/>
+                </StackPanel>
+
+                <Button Grid.Column="1" x:Name="BtnRefresh" Content="Actualiser" Click="BtnRefresh_Click"
+                        Background="#673AB7" Foreground="White" Padding="12,6" FontSize="12"/>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Margin="16" Background="White" BorderThickness="1" BorderBrush="#DDDDDD">
+            <DataGrid x:Name="GridProcess" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"
+                      HeadersVisibility="Column" GridLinesVisibility="None" Background="White">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="PID" Binding="{Binding Id}" Width="80"/>
+                    <DataGridTextColumn Header="Nom" Binding="{Binding Name}" Width="*"/>
+                    <DataGridTextColumn Header="RAM (MB)" Binding="{Binding MemoryUsage}" Width="120"/>
+                    <DataGridTemplateColumn Header="Action" Width="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Terminer" Click="BtnKill_Click"
+                                        Background="#E74C3C" Foreground="White" Height="28" Padding="8,0" FontSize="11"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <Border Grid.Row="2" Margin="16,0,16,8" Background="White" BorderThickness="1" BorderBrush="#DDDDDD">
+            <Grid Margin="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="0">
+                    <Button x:Name="BtnRestart" Content="Redémarrer" Click="BtnRestart_Click"
+                            Background="#F39C12" Foreground="White" Padding="12,6" Margin="0,0,8,0"/>
+                    <Button x:Name="BtnShutdown" Content="Éteindre" Click="BtnShutdown_Click"
+                            Background="#E74C3C" Foreground="White" Padding="12,6" Margin="0,0,16,0"/>
+                    
+                    <TextBox x:Name="CmdTextBox" Width="260" Height="30" VerticalContentAlignment="Center"
+                             Margin="0,0,8,0" ToolTip="Commande à exécuter sur la machine distante"/>
+                    <Button x:Name="BtnExecute" Content="Lancer" Click="BtnExecuteCommand_Click"
+                            Background="#2980B9" Foreground="White" Padding="12,6"/>
+                </StackPanel>
+
+                <TextBlock x:Name="TxtCommandStatus" Grid.Row="1" Margin="0,8,0,0"
+                           Text="Prêt" Foreground="#666666"/>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="3" Margin="16" Background="White" BorderThickness="1" BorderBrush="#DDDDDD">
+            <ListBox x:Name="LstSessionLogs" Background="White" DisplayMemberPath="." Foreground="#333333"/>
+        </Border>
+    </Grid>
+</Window>

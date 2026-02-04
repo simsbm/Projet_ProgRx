@@ -1,0 +1,97 @@
+<Window x:Class="NetAdmin.Server.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NetAdminPro - Connexion"
+        Height="450"
+        Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="White">
+    
+    <Grid Background="#F5F5F5">
+        <!-- Contenu principal -->
+        <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Width="350">
+            
+            <!-- Titre -->
+            <TextBlock Text="NetAdminPro"
+                       Foreground="#2C3E50"
+                       FontSize="32"
+                       FontWeight="Bold"
+                       TextAlignment="Center"
+                       Margin="0,0,0,5"/>
+            
+            <TextBlock Text="Authentification"
+                       Foreground="#7F8C8D"
+                       FontSize="14"
+                       TextAlignment="Center"
+                       Margin="0,0,0,30"/>
+
+            <!-- Formulaire -->
+            <TextBlock Text="Nom d'utilisateur"
+                       Foreground="#2C3E50"
+                       FontWeight="Bold"
+                       Margin="0,0,0,5"/>
+            
+            <TextBox x:Name="UsernameTextBox"
+                     Height="40"
+                     Padding="12,10"
+                     FontSize="13"
+                     Margin="0,0,0,15"
+                     BorderThickness="1"
+                     BorderBrush="#BDC3C7"
+                     Foreground="#2C3E50"/>
+
+            <TextBlock Text="Mot de passe"
+                       Foreground="#2C3E50"
+                       FontWeight="Bold"
+                       Margin="0,0,0,5"/>
+            
+            <PasswordBox x:Name="PasswordBox"
+                         Height="40"
+                         Padding="12,10"
+                         FontSize="13"
+                         Margin="0,0,0,15"
+                         BorderThickness="1"
+                         BorderBrush="#BDC3C7"
+                         Foreground="#2C3E50"/>
+
+            <!-- Message d'erreur -->
+            <TextBlock x:Name="ErrorMessage"
+                       Text=""
+                       Foreground="#E74C3C"
+                       FontSize="11"
+                       TextWrapping="Wrap"
+                       Margin="0,0,0,15"
+                       MinHeight="15"/>
+
+            <!-- Bouton de connexion -->
+            <Button x:Name="LoginButton"
+                    Content="Se connecter"
+                    Height="40"
+                    FontSize="13"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Background="#3498DB"
+                    BorderThickness="0"
+                    Click="LoginButton_Click"
+                    Cursor="Hand"
+                    Margin="0,0,0,20"/>
+
+            <!-- Indicateur de chargement -->
+            <ProgressBar x:Name="LoadingBar"
+                         Height="2"
+                         Background="#3498DB"
+                         IsIndeterminate="True"
+                         Visibility="Collapsed"
+                         Margin="0,0,0,15"/>
+
+            <!-- Texte de test -->
+            <TextBlock Text="Test: admin / Admin@123!"
+                       Foreground="#95A5A6"
+                       FontSize="10"
+                       TextAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Window>
