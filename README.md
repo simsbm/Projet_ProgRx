@@ -1,91 +1,136 @@
-# NetAdmin
+# Documentation NetAdmin Pro
 
-## Description du Projet
+## Table des matieres
 
-NetAdmin est une application client-serveur développée en .NET, conçue pour la surveillance et l'administration de systèmes à distance. Le projet se compose d'une application cliente légère qui collecte des informations système (matériel et processus) et les transmet à un serveur central. Le serveur, doté d'une interface utilisateur graphique (WPF), permet la gestion des clients connectés, l'affichage des données collectées et l'exécution de commandes à distance.
+1. Presentation
+2. Architecture generale
+3. Modules et responsabilites
+4. Installation et prerequis
+5. Configuration
+6. Demarrage
+7. Authentification et securite
+8. Base de donnees
+9. Supervision et UI
+10. Notifications Discord
+11. Depannage
 
-Ce projet met en œuvre une architecture modulaire, une communication réseau sécurisée, et une gestion des données persistante, le tout dans un environnement .NET.
+## 1. Presentation
 
-## Fonctionnalités
-
-*   **Surveillance Matérielle :** Collecte en temps réel de l'utilisation du CPU, de la mémoire RAM disponible et totale, ainsi que des informations sur le système d'exploitation du client.
-*   **Surveillance des Processus :** Récupération de la liste des processus en cours d'exécution sur la machine cliente.
-*   **Communication Client-Serveur :** Établissement d'une connexion TCP/IP sécurisée entre le client et le serveur pour l'échange de données et de commandes.
-*   **Authentification Utilisateur :** Système d'authentification robuste basé sur JWT (JSON Web Tokens) et hachage des mots de passe avec BCrypt.Net-Next.
-*   **Interface Utilisateur Graphique (WPF) :** Tableau de bord intuitif sur le serveur pour visualiser les données des clients, gérer les utilisateurs et interagir avec les machines distantes.
-*   **Persistance des Données :** Utilisation de SQLite via Entity Framework Core pour stocker les informations utilisateur et les données de configuration.
-*   **Visualisation des Données :** Intégration de LiveCharts.Wpf pour des représentations graphiques claires des métriques système.
-*   **Design Moderne :** Interface utilisateur améliorée avec MaterialDesignThemes.
-
-## Technologies Utilisées
-
-Le projet est développé en C# et utilise le framework .NET 10.0.
-
-### Côté Serveur (`NetAdmin.Server`)
-
-*   **Framework :** .NET 10.0 (Windows Desktop)
-*   **Interface Utilisateur :** WPF (Windows Presentation Foundation)
-*   **Base de Données :** SQLite avec Entity Framework Core
-*   **Authentification :** JWT (JSON Web Tokens), BCrypt.Net-Next
-*   **Graphiques :** LiveCharts.Wpf
-*   **Composants UI :** MaterialDesignThemes
-
-### Côté Client (`NetAdmin.Client`)
-
-*   **Framework :** .NET 10.0
-*   **Collecte de Données :** `System.Diagnostics.PerformanceCounter`, `System.Management`
-
-### Partagé (`NetAdmin.Shared`)
-
-*   **Framework :** .NET 10.0
-*   **Modèles de Données :** Classes partagées pour les informations matérielles, les processus, les paquets réseau, etc.
-*   **Protocoles de Communication :** Définitions des types de commandes et de paquets.
-
-## Structure du Projet
-
-Le dépôt est organisé en trois projets principaux :
-
-*   `NetAdmin.Client/` : Contient le code source de l'application cliente. Ce projet est responsable de la collecte des données système et de leur envoi au serveur.
-*   `NetAdmin.Server/` : Contient le code source de l'application serveur. Il inclut l'interface utilisateur WPF, la logique de gestion des clients, l'authentification et l'accès à la base de données.
-*   `NetAdmin.Shared/` : Une bibliothèque de classes partagée qui définit les modèles de données et les types de communication utilisés par les applications cliente et serveur.
-
+NetAdmin Pro est une application client-serveur en .NET pour la surveillance et l'administration a distance.  
+Le client collecte des informations systeme (materiel, processus, etat) et les envoie au serveur.  
+Le serveur met a disposition une interface WPF pour visualiser les donnees, suivre les clients et executer des actions.
 ## Installation
 
 Pour installer et exécuter le projet NetAdmin, suivez les étapes ci-dessous :
-
-1.  **Prérequis :**
+ **Prérequis :**
     *   Assurez-vous d'avoir le SDK .NET 10.0 (ou une version compatible) installé sur votre machine.
     *   Un environnement de développement tel que Visual Studio ou Visual Studio Code avec les extensions C# est recommandé.
 
-2.  **Cloner le dépôt :**
+**Cloner le dépôt :**
     ```bash
     git clone https://github.com/simsbm/Projet_ProgRx.git
     cd Projet_ProgRx
     ```
 
-3.  **Restaurer les dépendances et compiler :**
-    Ouvrez la solution (`Projet_ProgRx.sln`) dans votre IDE ou utilisez la ligne de commande :
-    ```bash
-    dotnet restore
-    dotnet build
-    ```
+## 2. Architecture generale
 
-## Utilisation
+Le projet est compose de trois projets .NET 10 :
+- `NetAdmin.Client` : agent de collecte et communication.
+- `NetAdmin.Server` : application WPF, services, persistance.
+- `NetAdmin.Shared` : modeles et protocoles partages.
 
-### Démarrage du Serveur
+Flux simplifie :
+1. Le client se connecte au serveur TCP.
+2. Il envoie des paquets reseau (infos systeme, processus, etc.).
+3. Le serveur traite, enregistre en base et met a jour l'UI.
+4. Des actions peuvent etre executees depuis le serveur vers le client.
 
-1.  Naviguez vers le répertoire du projet serveur :
-    ```bash
-    cd NetAdmin.Server
-    ```
-2.  Exécutez l'application serveur :
-    ```bash
-    dotnet run
-    ```
-    L'interface utilisateur WPF du serveur devrait se lancer. Lors du premier démarrage, la base de données SQLite sera initialisée et un utilisateur administrateur par défaut pourrait être créé (vérifiez `NetAdmin.Server/Data/DatabaseInitializer.cs` pour les détails).
+## 3. Modules et responsabilites
 
-### Démarrage du Client
+- **Client**
+  - Collecte CPU/RAM/processus.
+  - Envoi de donnees au serveur via TCP.
+  - Gestion de configuration locale.
 
+- **Server**
+  - Serveur TCP et orchestration des clients.
+  - Interface WPF (graphiques, tableaux, logs).
+  - Authentification et gestion des sessions.
+  - Persistance SQLite via EF Core.
+
+- **Shared**
+  - DTOs et definitions de paquets reseau.
+  - Types utilises des deux cotes.
+
+## 4. Installation et prerequis
+
+Prerequis :
+- Windows 10/11 (serveur WPF).
+- .NET SDK 10.0.
+- IDE recommande : Visual Studio ou VS Code.
+
+Installation :
+```bash
+dotnet restore
+dotnet build
+```
+
+## 5. Configuration
+
+### Serveur
+Fichier : `NetAdmin.Server/appsettings.json`
+```json
+{
+  "JwtSettings": {
+    "Secret": "your-super-secret-key-min-32-characters-for-security",
+    "TokenExpirationMinutes": 60,
+    "RefreshTokenExpirationDays": 7
+  },
+  "Database": {
+    "ConnectionString": "Data Source=netadmin.db"
+  },
+  "Server": {
+    "Port": 5000,
+    "MaxConnections": 100
+  },
+  "Discord": {
+    "Enabled": false,
+    "WebhookUrl": "",
+    "Username": "NetAdmin Pro",
+    "AvatarUrl": "",
+    "ServerName": ""
+  }
+}
+```
+
+### Client
+Fichier : `NetAdmin.Client/appsettings.json`
+```json
+{
+  "Server": {
+    "Host": "127.0.0.1",
+    "Port": 5000
+  },
+  "Authentication": {
+    "AutoRefreshToken": true,
+    "RefreshIntervalMinutes": 55
+  },
+  "Client": {
+    "HeartbeatIntervalSeconds": 30,
+    "ConnectTimeoutSeconds": 10
+  }
+}
+```
+
+## 6. Demarrage
+
+### Serveur
+```bash
+cd NetAdmin.Server
+dotnet run
+```
+
+### Client
 1.  Naviguez vers le répertoire du projet client :
     ```bash
     cd NetAdmin.Client
@@ -98,12 +143,72 @@ Pour installer et exécuter le projet NetAdmin, suivez les étapes ci-dessous :
     ```
     Le client tentera de se connecter au serveur et commencera à envoyer les données collectées.
 
-## Auteurs
+## 7. Authentification et securite
 
-*  **NGONO NGONO CECILE**
+Mecanismes implementes :
+- Hachage des mots de passe via BCrypt (salt automatique).
+- JWT signe HMAC-SHA256 (claims : userId, username, email, role, fullName).
+- Refresh tokens en base, revocation possible.
+- Verification serveur des tokens (revokes, expirations).
+- Session manager cote serveur (role, IP, activite).
+- Delai sur echec de login pour limiter le brute force.
+
+Identifiants par defaut (a changer en production) :
+```text
+admin / Admin@123!
+supervisor / Supervisor@123!
+operator / Operator@123!
+viewer / Viewer@123!
+```
+
+## 8. Base de donnees
+
+La base est en SQLite, geree par EF Core.  
+Tables principales :
+- `Users`
+- `AuthTokens`
+- `AuditLogs`
+- `ClientHosts`
+- `MetricLogs`
+
+Fichiers utiles :
+- `ARCHITECTURE_DATABASE.md`
+- `DATABASE_CONFIGURATION.md`
+- `DATABASE_TEST_GUIDE.md`
+
+## 9. Supervision et UI
+
+Le serveur fournit :
+- Statistiques globales (clients en ligne, dernier client).
+- Graphiques temps reel (CPU/RAM).
+- Tableau des machines connectees.
+- Journal de logs serveur.
+
+## 10. Notifications Discord
+
+Le serveur peut envoyer des notifications via webhook.
+
+Configuration :
+1. Creer un webhook dans Discord.
+2. Renseigner `Discord.WebhookUrl`.
+3. Passer `Discord.Enabled` a `true`.
+
+Evenements notifies :
+- Demarrage serveur.
+- Connexion client.
+- Enregistrement client.
+
+## 11. Depannage
+
+- Logs de demarrage : `netadmin.startup.log`.
+- Verifier le port TCP (par defaut 5000).
+- Verifier les secrets JWT dans `appsettings.json`.
+
+## Auteurs
+*   **NGONO NGONO CECILE**
 *   **NKWAWYA JOEL** 
 *   **PIANTA PINDO CHIRANEL**
 *   **SANGUEN JORDAN** 
-*   **SIMO WAFFO BREL MOREL**
-  
+*   **SIMO WAFFO BREL MOREL** 
+
 
