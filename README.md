@@ -1,19 +1,5 @@
 # Documentation NetAdmin Pro
 
-## Table des matieres
-
-1. Presentation
-2. Architecture generale
-3. Modules et responsabilites
-4. Installation et prerequis
-5. Configuration
-6. Demarrage
-7. Authentification et securite
-8. Base de donnees
-9. Supervision et UI
-10. Notifications Discord
-11. Depannage
-
 ## 1. Presentation
 
 NetAdmin Pro est une application client-serveur en .NET pour la surveillance et l'administration a distance.  
@@ -22,6 +8,7 @@ Le serveur met a disposition une interface WPF pour visualiser les donnees, suiv
 ## Installation
 
 Pour installer et exécuter le projet NetAdmin, suivez les étapes ci-dessous :
+
  **Prérequis :**
     *   Assurez-vous d'avoir le SDK .NET 10.0 (ou une version compatible) installé sur votre machine.
     *   Un environnement de développement tel que Visual Studio ou Visual Studio Code avec les extensions C# est recommandé.
@@ -153,7 +140,7 @@ Mecanismes implementes :
 - Session manager cote serveur (role, IP, activite).
 - Delai sur echec de login pour limiter le brute force.
 
-Identifiants par defaut (a changer en production) :
+Identifiants par defaut  :
 ```text
 admin / Admin@123!
 supervisor / Supervisor@123!
